@@ -29,3 +29,19 @@ func (u UserInteractor) CreateUser(name string) error {
 
 	return err
 }
+
+func (u UserInteractor) GetUsers() error {
+	return nil
+}
+
+func (u UserInteractor) GetUser(id string) error {
+	return nil
+}
+
+func (u UserInteractor) DeleteUser(id string) error {
+	return nil
+}
+
+func (u UserInteractor) UpdateUserName(id string, name string) error {
+	return nil
+}
