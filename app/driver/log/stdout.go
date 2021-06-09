@@ -1,6 +1,9 @@
 package log
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type StdoutLogger struct {
 }
@@ -10,5 +13,6 @@ func NewStdoutLogger() *StdoutLogger {
 }
 
 func (s StdoutLogger) Write(o ...interface{}) {
-	fmt.Println(o)
+	fmt.Print("[" + time.Now().Format("2006-01-02 15:04:05") + "] ")
+	fmt.Println(o...)
 }
