@@ -2,6 +2,7 @@ package interactor
 
 import (
 	"github.com/yudwig/echo-sample/app/adapter/repository"
+	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
 )
 
 type repositories struct {
@@ -22,26 +23,42 @@ func NewUserInteractor(usersRepository repository.Users, logger repository.Log) 
 	}
 }
 
-func (u UserInteractor) CreateUser(name string) error {
-	user, err := u.repositories.User.Create(name)
-
-	u.repositories.Log.Write(user.Name, name)
-
-	return err
+func (u UserInteractor) CreateUser(name string) (user.User, error) {
+	usr, err := u.repositories.User.Create(name)
+	if err != nil {
+		u.repositories.Log.Write("User created failed. name: " + name)
+		return user.User{}, err
+	}
+	u.repositories.Log.Write("User created success. user: " + usr.String())
+	return usr, err
 }
 
-func (u UserInteractor) GetUsers() error {
-	return nil
-}
-
-func (u UserInteractor) GetUser(id string) error {
-	return nil
+func (u UserInteractor) GetUsers() ([]user.User, error) {
+	users, err := u.repositories.User.GetAll()
+	if err != nil {
+		u.repositories.Log.Write("GetUsers failed.")
+		return []user.User{}, err
+	}
+	u.repositories.Log.Write("GetUsers success.")
+	return users, err
 }
 
 func (u UserInteractor) DeleteUser(id string) error {
+	err := u.repositories.User.Delete(id)
+	if err != nil {
+		u.repositories.Log.Write("User delete failed. id: " + id)
+		return err
+	}
+	u.repositories.Log.Write("User delete success. id: " + id)
 	return nil
 }
 
-func (u UserInteractor) UpdateUserName(id string, name string) error {
-	return nil
+func (u UserInteractor) UpdateUserName(id string, name string) (user.User, error) {
+	usr, err := u.repositories.User.Update(id, name)
+	if err != nil {
+		u.repositories.Log.Write("UserName update failed. id: " + id + ", name: " + name)
+		return user.User{}, err
+	}
+	u.repositories.Log.Write("UserName update success. user: " + usr.String())
+	return usr, err
 }

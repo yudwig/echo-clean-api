@@ -1,8 +1,10 @@
 package usecase
 
+import "github.com/yudwig/echo-sample/app/core/domain/entity/user"
+
 type UserUseCase interface {
-	CreateUser(name string) error
-	GetUsers() error
+	CreateUser(name string) (user.User, error)
+	GetUsers() ([]user.User, error)
 	DeleteUser(id string) error
-	UpdateUserName(id string, name string) error
+	UpdateUserName(id string, name string) (user.User, error)
 }
