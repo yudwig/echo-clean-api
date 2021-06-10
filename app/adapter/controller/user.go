@@ -23,21 +23,17 @@ type UserController struct {
 }
 
 func NewUserController() *UserController {
-
 	r := &repositories{
 		User: mock.NewUsersRepository(),
 		Log:  log.NewStdoutLogger(),
 	}
-
 	u := &useCases{
 		User: interactor.NewUserInteractor(r.User, r.Log),
 	}
-
 	c := &UserController{
 		repositories: r,
 		useCases:     u,
 	}
-
 	return c
 }
 
