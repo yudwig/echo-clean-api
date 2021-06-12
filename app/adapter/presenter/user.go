@@ -8,8 +8,8 @@ import (
 type UserPresenter struct {
 }
 
-func NewUserPresenter() *UserPresenter {
-	return new(UserPresenter)
+func NewUserPresenter() UserPresenter {
+	return UserPresenter{}
 }
 
 func createUserInfo(user user.User) response.UserInfo {
@@ -19,14 +19,14 @@ func createUserInfo(user user.User) response.UserInfo {
 	}
 }
 
-func (presenter UserPresenter) MakeCreateUserResponse(user user.User, err error) *response.CreateUserResponse {
+func (p UserPresenter) MakeCreateUserResponse(user user.User, err error) *response.CreateUserResponse {
 	return &response.CreateUserResponse{
 		User:  createUserInfo(user),
 		Error: response.NewError(err.Error()),
 	}
 }
 
-func (presenter UserPresenter) MakeGetUsersResponse(users []user.User, err error) *response.GetUsersResponse {
+func (p UserPresenter) MakeGetUsersResponse(users []user.User, err error) *response.GetUsersResponse {
 	var userInfos []response.UserInfo
 	for _, u := range users {
 		userInfos = append(userInfos, createUserInfo(u))
@@ -37,14 +37,14 @@ func (presenter UserPresenter) MakeGetUsersResponse(users []user.User, err error
 	}
 }
 
-func (presenter UserPresenter) MakeUpdateUserResponse(user user.User, err error) *response.UpdateUserResponse {
+func (p UserPresenter) MakeUpdateUserResponse(user user.User, err error) *response.UpdateUserResponse {
 	return &response.UpdateUserResponse{
 		User:  createUserInfo(user),
 		Error: response.NewError(err.Error()),
 	}
 }
 
-func (presenter UserPresenter) MakeDeleteUserResponse(err error) *response.DeleteUserResponse {
+func (p UserPresenter) MakeDeleteUserResponse(err error) *response.DeleteUserResponse {
 	return &response.DeleteUserResponse{
 		Error: response.NewError(err.Error()),
 	}
