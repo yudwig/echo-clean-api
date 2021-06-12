@@ -8,13 +8,15 @@ type Error struct {
 }
 
 func NewError(err error) Error {
-	msg := ""
-	if err != nil {
-		msg = err.Error()
+	if err == nil {
+		return Error{
+			Code:    0,
+			Message: "",
+		}
 	}
 	return Error{
-		Code:    getErrorCode(msg),
-		Message: msg,
+		Code:    getErrorCode(err.Error()),
+		Message: err.Error(),
 	}
 }
 
