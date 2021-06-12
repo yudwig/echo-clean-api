@@ -5,7 +5,6 @@ import (
 )
 
 type Users interface {
-	Get(id string) (user.User, error)
 	GetAll() ([]user.User, error)
 	Create(name string) (user.User, error)
 	Delete(id string) error
