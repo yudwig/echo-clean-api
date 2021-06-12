@@ -22,7 +22,7 @@ func createUserInfo(user user.User) response.UserInfo {
 func (p UserPresenter) MakeCreateUserResponse(user user.User, err error) *response.CreateUserResponse {
 	return &response.CreateUserResponse{
 		User:  createUserInfo(user),
-		Error: response.NewError(err.Error()),
+		Error: response.NewError(err),
 	}
 }
 
@@ -33,19 +33,19 @@ func (p UserPresenter) MakeGetUsersResponse(users []user.User, err error) *respo
 	}
 	return &response.GetUsersResponse{
 		Users: userInfos,
-		Error: response.NewError(err.Error()),
+		Error: response.NewError(err),
 	}
 }
 
 func (p UserPresenter) MakeUpdateUserResponse(user user.User, err error) *response.UpdateUserResponse {
 	return &response.UpdateUserResponse{
 		User:  createUserInfo(user),
-		Error: response.NewError(err.Error()),
+		Error: response.NewError(err),
 	}
 }
 
 func (p UserPresenter) MakeDeleteUserResponse(err error) *response.DeleteUserResponse {
 	return &response.DeleteUserResponse{
-		Error: response.NewError(err.Error()),
+		Error: response.NewError(err),
 	}
 }

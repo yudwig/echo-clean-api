@@ -7,10 +7,14 @@ type Error struct {
 	Message string `json:"message"`
 }
 
-func NewError(message string) Error {
+func NewError(err error) Error {
+	msg := ""
+	if err != nil {
+		msg = err.Error()
+	}
 	return Error{
-		Code:    getErrorCode(message),
-		Message: message,
+		Code:    getErrorCode(msg),
+		Message: msg,
 	}
 }
 
@@ -18,6 +22,10 @@ var errorCodes = map[string]int{
 	errors.EmptyUserNameError: 1000,
 }
 
-func getErrorCode(message string) int {
-	return errorCodes[message]
+func getErrorCode(msg string) int {
+	code, err := errorCodes[msg]
+	if err == false {
+		return -1
+	}
+	return code
 }
