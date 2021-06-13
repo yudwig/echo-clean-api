@@ -12,15 +12,15 @@ func NewUsersRepository() *UsersRepository {
 }
 
 func (u UsersRepository) GetAll() ([]user.User, error) {
-	return []user.User{
-		*user.NewUser("id-1", "user 1"),
-		*user.NewUser("id-2", "user 2"),
-		*user.NewUser("id-3", "user 3"),
-	}, nil
+	usr1, _ := user.NewUser("id-1", "user 1")
+	usr2, _ := user.NewUser("id-2", "user 2")
+	usr3, _ := user.NewUser("id-3", "user 3")
+	return []user.User{usr1, usr2, usr3}, nil
 }
 
 func (u UsersRepository) Create(name string) (user.User, error) {
-	return *user.NewUser("id-1", "user 1"), nil
+	usr, _ := user.NewUser("id-1", name)
+	return usr, nil
 }
 
 func (u UsersRepository) Delete(id string) error {
@@ -28,5 +28,6 @@ func (u UsersRepository) Delete(id string) error {
 }
 
 func (u UsersRepository) Update(id string, name string) (user.User, error) {
-	return *user.NewUser("id-1", "user 1"), nil
+	usr, _ := user.NewUser(id, name)
+	return usr, nil
 }
