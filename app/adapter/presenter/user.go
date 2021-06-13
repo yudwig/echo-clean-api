@@ -14,8 +14,8 @@ func NewUserPresenter() UserPresenter {
 
 func createUserInfo(user user.User) response.UserInfo {
 	return response.UserInfo{
-		Id:   user.Id,
-		Name: user.Name,
+		Id:   user.Id.Get(),
+		Name: user.Name.Get(),
 	}
 }
 

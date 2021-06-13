@@ -1,6 +1,8 @@
 package response
 
-import "github.com/yudwig/echo-sample/app/core/domain/entity/errors"
+import (
+	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
+)
 
 type Error struct {
 	Code    int    `json:"code"`
@@ -21,7 +23,7 @@ func NewError(err error) Error {
 }
 
 var errorCodes = map[string]int{
-	errors.EmptyUserNameError: 1000,
+	user.EmptyUserNameError: 1000,
 }
 
 func getErrorCode(msg string) int {
