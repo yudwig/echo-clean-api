@@ -9,6 +9,14 @@ import (
 func Run() {
 	e := echo.New()
 	e.Use(middleware.Logger())
+	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			c.Logger().Printf("%#v", c.Request())
+			err := next(c)
+			c.Logger().Printf("%#v", c.Response())
+			return err
+		}
+	})
 	routes.Init(e)
 	e.Logger.Fatal(e.Start("localhost:8000"))
 }
