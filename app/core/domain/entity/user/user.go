@@ -4,6 +4,11 @@ import (
 	"encoding/json"
 )
 
+const (
+	EmptyUserNameError = "empty user name"
+	InvalidUserIdError = "invalid user id"
+)
+
 type User struct {
 	Id   Id
 	Name Name
