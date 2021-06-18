@@ -6,7 +6,7 @@ import (
 	"github.com/yudwig/echo-sample/app/adapter/repository"
 	"github.com/yudwig/echo-sample/app/core/presentation/response"
 	"github.com/yudwig/echo-sample/app/core/usecase"
-	"github.com/yudwig/echo-sample/app/driver/db/mock"
+	"github.com/yudwig/echo-sample/app/driver/db/mockdb"
 	"github.com/yudwig/echo-sample/app/driver/log"
 )
 
@@ -31,7 +31,7 @@ type UserController struct {
 
 func NewUserController() *UserController {
 	r := &repositories{
-		User: mock.NewUsersRepository(),
+		User: mockdb.NewUsersRepository(),
 		Log:  log.NewStdoutLogger(),
 	}
 	u := &useCases{

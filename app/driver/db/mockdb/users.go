@@ -1,4 +1,4 @@
-package mock
+package mockdb
 
 import (
 	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
@@ -7,8 +7,8 @@ import (
 type UsersRepository struct {
 }
 
-func NewUsersRepository() *UsersRepository {
-	return &UsersRepository{}
+func NewUsersRepository() UsersRepository {
+	return UsersRepository{}
 }
 
 func (u UsersRepository) GetAll() ([]user.User, error) {
