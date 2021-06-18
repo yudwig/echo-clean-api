@@ -9,10 +9,10 @@ type UsersRepository struct {
 	db *gorm.DB
 }
 
-type UserModel struct {
-	gorm.Model
-	Id   string
+type User struct {
+	IdField
 	Name string
+	TimeFields
 }
 
 func NewUsersRepository() (UsersRepository, error) {
