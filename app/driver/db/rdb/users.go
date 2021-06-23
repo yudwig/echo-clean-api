@@ -2,6 +2,7 @@ package rdb
 
 import (
 	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
+	"github.com/yudwig/echo-sample/app/driver/db/seed"
 	"gorm.io/gorm"
 )
 
@@ -21,10 +22,7 @@ func NewUsersRepository() (UsersRepository, error) {
 }
 
 func (u UsersRepository) GetAll() ([]user.User, error) {
-	usr1, _ := user.NewUser("id-1", "user 1")
-	usr2, _ := user.NewUser("id-2", "user 2")
-	usr3, _ := user.NewUser("id-3", "user 3")
-	return []user.User{usr1, usr2, usr3}, nil
+	return seed.GetTestUsers()
 }
 
 func (u UsersRepository) Create(name string) (user.User, error) {
