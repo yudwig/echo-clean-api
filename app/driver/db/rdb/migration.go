@@ -1,15 +1,23 @@
 package rdb
 
-import "fmt"
+import (
+	"github.com/yudwig/ermux"
+	"gorm.io/gorm"
+)
 
-func Migrate() {
-	fmt.Println("Migrate start.")
-	db, err := GetDbInstance()
-	if err != nil {
-		panic(err.Error())
+func Migrate(db *gorm.DB) {
+	errs := make([]error, 1)
+	errs[0] = db.AutoMigrate(User{})
+	if ermux.Some(errs) {
+		panic(ermux.First(errs).Error())
 	}
-	err = db.AutoMigrate(User{})
-	if err != nil {
-		panic(err.Error())
+}
+
+func MigrateWithDelete(db *gorm.DB) {
+	errs := make([]error, 2)
+	errs[0] = db.Migrator().DropTable(User{})
+	errs[1] = db.AutoMigrate(User{})
+	if ermux.Some(errs) {
+		panic(ermux.First(errs).Error())
 	}
 }
