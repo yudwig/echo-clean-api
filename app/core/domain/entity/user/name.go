@@ -1,6 +1,9 @@
 package user
 
-import "errors"
+import (
+	"encoding/json"
+	"errors"
+)
 
 type Name struct {
 	value string
@@ -15,6 +18,14 @@ func NewName(name string) (Name, error) {
 	}, nil
 }
 
-func (n Name) Get() string {
+func (n Name) Value() string {
 	return n.value
+}
+
+func (n Name) String() string {
+	return n.value
+}
+
+func (n Name) MarshalJSON() ([]byte, error) {
+	return json.Marshal(n.Value())
 }

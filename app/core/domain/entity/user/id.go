@@ -1,6 +1,7 @@
 package user
 
 import (
+	"encoding/json"
 	"errors"
 )
 
@@ -15,6 +16,14 @@ func NewId(id string) (Id, error) {
 	return Id{value: id}, nil
 }
 
-func (i Id) Get() string {
+func (i Id) Value() string {
 	return i.value
+}
+
+func (i Id) String() string {
+	return i.value
+}
+
+func (i Id) MarshalJSON() ([]byte, error) {
+	return json.Marshal(i.Value())
 }
