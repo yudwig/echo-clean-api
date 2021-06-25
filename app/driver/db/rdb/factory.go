@@ -41,12 +41,12 @@ func createDb(dbname string) (*gorm.DB, error) {
 	})
 }
 
-func newDb() (*gorm.DB, error) {
+func NewDb() (*gorm.DB, error) {
 	return createDb("echo")
 }
 
-func newTestDb() (*gorm.DB, error) {
+func NewTestDb() (*gorm.DB, error) {
 	db, err := createDb("echo_test")
-
+	MigrateWithDelete(db)
 	return db, err
 }
