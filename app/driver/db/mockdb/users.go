@@ -31,3 +31,7 @@ func (u UsersRepository) Update(id string, name string) (user.User, error) {
 	usr, _ := user.NewUser(id, name)
 	return usr, nil
 }
+
+func (u UsersRepository) Transaction(f func() error) error {
+	return f()
+}

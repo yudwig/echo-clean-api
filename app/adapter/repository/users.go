@@ -9,4 +9,5 @@ type Users interface {
 	Create(name string) (user.User, error)
 	Delete(id string) error
 	Update(id string, name string) (user.User, error)
+	Transaction(f func() error) error
 }
