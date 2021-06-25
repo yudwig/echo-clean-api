@@ -23,7 +23,8 @@ func main() {
 	case "serve":
 		server.Run()
 	case "migrate":
-		rdb.Migrate()
+		db, _ := rdb.NewDb()
+		rdb.Migrate(db)
 	default:
 		help()
 	}
