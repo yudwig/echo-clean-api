@@ -1,8 +1,10 @@
 package routes
 
 import (
+	"encoding/json"
 	"github.com/labstack/echo"
 	"github.com/yudwig/echo-sample/app/adapter/controller"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -32,7 +34,19 @@ func initUserRoutes(g *echo.Group) error {
 
 	// Update User Name API
 	g.PATCH("/:id", func(ctx echo.Context) error {
-		res := c.UpdateUserName(ctx.Param("id"), ctx.FormValue("name"))
+		type req struct {
+			Name string `json:"name"`
+		}
+		r := req{}
+		body, err := ioutil.ReadAll(ctx.Request().Body)
+		if err != nil {
+			return err
+		}
+		err = json.Unmarshal(body, &r)
+		if err != nil {
+			return err
+		}
+		res := c.UpdateUserName(ctx.Param("id"), r.Name)
 		if res.Error.Code == 0 {
 			return ctx.JSON(http.StatusOK, res)
 		}
