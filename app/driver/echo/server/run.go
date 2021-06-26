@@ -17,6 +17,11 @@ func Run() {
 			return err
 		}
 	})
-	routes.Init(e)
+	err := routes.Init(e)
+	if err != nil {
+		e.Logger.Fatal("failed to init router")
+		e.Logger.Fatal(err)
+		return
+	}
 	e.Logger.Fatal(e.Start("localhost:8000"))
 }

@@ -6,8 +6,11 @@ import (
 	"net/http"
 )
 
-func initUserRoutes(g *echo.Group) {
-	c := controller.NewUserController()
+func initUserRoutes(g *echo.Group) error {
+	c, err := controller.NewUserController()
+	if err != nil {
+		return err
+	}
 
 	// Get Users API
 	g.GET("/", func(ctx echo.Context) error {
@@ -44,4 +47,5 @@ func initUserRoutes(g *echo.Group) {
 		}
 		return ctx.JSON(http.StatusInternalServerError, res)
 	})
+	return nil
 }
