@@ -6,7 +6,7 @@ import (
 	"github.com/yudwig/echo-sample/app/adapter/repository"
 	"github.com/yudwig/echo-sample/app/core/presentation/response"
 	"github.com/yudwig/echo-sample/app/core/usecase"
-	"github.com/yudwig/echo-sample/app/driver/db/mockdb"
+	"github.com/yudwig/echo-sample/app/driver/db/rdb"
 	"github.com/yudwig/echo-sample/app/driver/log"
 )
 
@@ -29,9 +29,13 @@ type UserController struct {
 	presenters   *presenters
 }
 
-func NewUserController() *UserController {
+func NewUserController() (*UserController, error) {
+	db, err := rdb.GetDbInstance()
+	if err != nil {
+		return nil, err
+	}
 	r := &repositories{
-		User: mockdb.NewUsersRepository(),
+		User: rdb.NewUsersRepository(db),
 		Log:  log.NewStdoutLogger(),
 	}
 	u := &useCases{
@@ -45,7 +49,7 @@ func NewUserController() *UserController {
 		useCases:     u,
 		presenters:   p,
 	}
-	return c
+	return c, nil
 }
 
 func (c UserController) CreateUser(name string) response.CreateUserResponse {
