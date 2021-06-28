@@ -1,6 +1,6 @@
 package usecase
 
-import "github.com/yudwig/echo-sample/app/core/domain/entity/user"
+import "github.com/yudwig/echo-clean-api/app/core/domain/entity/user"
 
 type UserUseCase interface {
 	CreateUser(name string) (user.User, error)

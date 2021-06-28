@@ -1,8 +1,8 @@
 package interactor
 
 import (
-	"github.com/yudwig/echo-sample/app/adapter/repository"
-	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
+	"github.com/yudwig/echo-clean-api/app/adapter/repository"
+	"github.com/yudwig/echo-clean-api/app/core/domain/entity/user"
 )
 
 type repositories struct {

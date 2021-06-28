@@ -1,4 +1,4 @@
-module github.com/yudwig/echo-sample
+module github.com/yudwig/echo-clean-api
 
 go 1.16
 

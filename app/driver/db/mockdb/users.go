@@ -1,7 +1,7 @@
 package mockdb
 
 import (
-	"github.com/yudwig/echo-sample/app/core/domain/entity/user"
+	"github.com/yudwig/echo-clean-api/app/core/domain/entity/user"
 )
 
 type UsersRepository struct {

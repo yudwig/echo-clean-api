@@ -1,13 +1,13 @@
 package controller
 
 import (
-	"github.com/yudwig/echo-sample/app/adapter/interactor"
-	"github.com/yudwig/echo-sample/app/adapter/presenter"
-	"github.com/yudwig/echo-sample/app/adapter/repository"
-	"github.com/yudwig/echo-sample/app/core/presentation/response"
-	"github.com/yudwig/echo-sample/app/core/usecase"
-	"github.com/yudwig/echo-sample/app/driver/db/rdb"
-	"github.com/yudwig/echo-sample/app/driver/log"
+	"github.com/yudwig/echo-clean-api/app/adapter/interactor"
+	"github.com/yudwig/echo-clean-api/app/adapter/presenter"
+	"github.com/yudwig/echo-clean-api/app/adapter/repository"
+	"github.com/yudwig/echo-clean-api/app/core/presentation/response"
+	"github.com/yudwig/echo-clean-api/app/core/usecase"
+	"github.com/yudwig/echo-clean-api/app/driver/db/rdb"
+	"github.com/yudwig/echo-clean-api/app/driver/log"
 )
 
 type repositories struct {

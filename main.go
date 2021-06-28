@@ -2,17 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/yudwig/echo-sample/app/driver/db/rdb"
-	"github.com/yudwig/echo-sample/app/driver/echo/server"
-	"github.com/yudwig/echo-sample/cmd"
+	"github.com/yudwig/echo-clean-api/app/driver/db/rdb"
+	"github.com/yudwig/echo-clean-api/app/driver/echo/server"
+	"github.com/yudwig/echo-clean-api/cmd"
 	"os"
 )
 
 func help() {
 	fmt.Println("Input command.")
 	fmt.Println("- server:  Run server")
-	fmt.Println("- shell:   Run shell")
-	fmt.Println("- migrate: Migrate database")
+	fmt.Println("- client:  Run client repl shell")
 	fmt.Println("- migrate: Migrate database")
 }
 
@@ -28,7 +27,7 @@ func main() {
 	case "migrate":
 		db, _ := rdb.NewDb()
 		rdb.Migrate(db)
-	case "shell":
+	case "client":
 		cmd.RunShell()
 	default:
 		help()

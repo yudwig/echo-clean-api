@@ -3,7 +3,7 @@ package routes
 import (
 	"encoding/json"
 	"github.com/labstack/echo"
-	"github.com/yudwig/echo-sample/app/adapter/controller"
+	"github.com/yudwig/echo-clean-api/app/adapter/controller"
 	"io/ioutil"
 	"net/http"
 )

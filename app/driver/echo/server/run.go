@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/yudwig/echo-sample/app/driver/echo/routes"
+	"github.com/yudwig/echo-clean-api/app/driver/echo/routes"
 )
 
 func Run() {
