@@ -3,16 +3,15 @@ package cmd
 import (
 	"errors"
 	"github.com/abiosoft/ishell"
-	"github.com/yudwig/echo-sample/app/driver/client"
+	"github.com/yudwig/echo-clean-api/app/driver/client"
 )
 
 func RunShell() {
 	sh := ishell.New()
-	sh.Println("Client start.")
 	sh.AddCmd(&ishell.Cmd{
 		Name:      "get",
 		Aliases:   nil,
-		Help:      "get users",
+		Help:      "get user list. input: > get",
 		LongHelp:  "",
 		Completer: nil,
 		Func: func(c *ishell.Context) {
@@ -22,7 +21,7 @@ func RunShell() {
 	sh.AddCmd(&ishell.Cmd{
 		Name:      "create",
 		Aliases:   nil,
-		Help:      "create user",
+		Help:      "create user. input: > create {name}",
 		LongHelp:  "",
 		Completer: nil,
 		Func: func(c *ishell.Context) {
@@ -44,12 +43,12 @@ func RunShell() {
 	sh.AddCmd(&ishell.Cmd{
 		Name:      "update",
 		Aliases:   nil,
-		Help:      "update user name",
+		Help:      "update user name. input: > update {id} {name}",
 		LongHelp:  "",
 		Completer: nil,
 		Func: func(c *ishell.Context) {
 			var err error
-			if len(c.Args) > 2 {
+			if len(c.Args) != 2 {
 				err = errors.New("input id and name")
 			}
 			if err != nil {
@@ -64,7 +63,7 @@ func RunShell() {
 	sh.AddCmd(&ishell.Cmd{
 		Name:      "delete",
 		Aliases:   nil,
-		Help:      "delete user",
+		Help:      "delete user. input: > delete {id}",
 		LongHelp:  "",
 		Completer: nil,
 		Func: func(c *ishell.Context) {
@@ -80,5 +79,7 @@ func RunShell() {
 			client.DeleteUser(c.Args[0])
 		},
 	})
+	sh.Println("Client shell start.")
+	sh.Println(sh.HelpText())
 	sh.Run()
 }
